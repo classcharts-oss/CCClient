@@ -4,7 +4,7 @@ export default {
   darkMode: ["class"],
   content: [
     "./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}",
-    "./components/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {

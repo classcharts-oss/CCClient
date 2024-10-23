@@ -12,12 +12,16 @@ import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { NormalDatePicker } from "./OurDatePicker";
 import React from "react";
+import { cn } from "~/lib/utils";
 
-export function LoginSwitcher() {
+export function LoginSwitcher({
+  className,
+  ...props
+}: React.ComponentProps<typeof Tabs>) {
   const [dob, setDob] = React.useState<Date>();
 
   return (
-    <Tabs defaultValue="student" className="w-[400px]">
+    <Tabs defaultValue="student" className={cn(className)} {...props}>
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="student">Student</TabsTrigger>
         <TabsTrigger value="parent">Parent</TabsTrigger>
@@ -30,15 +34,18 @@ export function LoginSwitcher() {
               Enter your code below, and date of birth.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-4">
             <div className="space-y-1">
               <Label htmlFor="code">Code</Label>
               <Input id="code" placeholder="AABBCC1122" />
             </div>
             <div className="space-y-1">
               <Label htmlFor="dob">Date of Birth</Label>
-              <br></br>
-              <NormalDatePicker date={dob} setDate={setDob} />
+              <NormalDatePicker
+                className="flex w-full"
+                date={dob}
+                onDateChange={setDob}
+              />
             </div>
           </CardContent>
           <CardFooter>
@@ -54,7 +61,7 @@ export function LoginSwitcher() {
               Enter your email and password below.
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-2">
+          <CardContent className="space-y-4">
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
               <Input id="email" type="email" />
