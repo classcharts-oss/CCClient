@@ -10,9 +10,9 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <main className="h-screen grid place-items-center">
-      <section className="max-w-sm w-full">
-        <LoginSwitcher className="w-full" />
+    <main className="h-screen grid place-items-center bg-black">
+      <section className="max-w-sm w-full space-y-2">
+        <LoginSwitcher />
       </section>
     </main>
   );

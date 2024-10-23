@@ -16,12 +16,14 @@
 		"@radix-ui/react-popover": "^1.1.2",
 		"@radix-ui/react-slot": "^1.1.0",
 		"@radix-ui/react-tabs": "^1.1.1",
+		"@radix-ui/react-use-controllable-state": "^1.1.0",
 		"@remix-run/node": "^2.13.1",
 		"@remix-run/react": "^2.13.1",
 		"@remix-run/serve": "^2.13.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
+		"framer-motion": "^11.11.9",
 		"isbot": "^4.1.0",
 		"lucide-react": "^0.453.0",
 		"react": "^18.2.0",
@@ -53,4 +55,3 @@
 		"node": ">=20.0.0"
 	}
 }
-
