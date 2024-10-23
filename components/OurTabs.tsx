@@ -13,12 +13,13 @@ import { Button } from "~/components/ui/button";
 import { NormalDatePicker } from "./OurDatePicker";
 import React from "react";
 import { cn } from "~/lib/utils";
+import { addYears } from "date-fns";
 
 export function LoginSwitcher({
   className,
   ...props
 }: React.ComponentProps<typeof Tabs>) {
-  const [dob, setDob] = React.useState<Date>();
+  const [dob, setDob] = React.useState<Date | undefined>(addYears(Date(), -12));
 
   return (
     <Tabs
