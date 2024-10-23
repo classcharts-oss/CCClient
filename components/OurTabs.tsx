@@ -21,14 +21,14 @@ export function LoginSwitcher({
   const [dob, setDob] = React.useState<Date>();
 
   return (
-    <Tabs defaultValue="student" className={cn(className)} {...props}>
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="student">Student</TabsTrigger>
-        <TabsTrigger value="parent">Parent</TabsTrigger>
-      </TabsList>
-      <TabsContent value="student">
-        <Card>
-          <CardHeader>
+    <Tabs
+      defaultValue="student"
+      className={cn("flex flex-col items-center", className)}
+      {...props}
+    >
+      <TabsContent className="w-full mt-0" value="student">
+        <Card className="space-y-4">
+          <CardHeader className="text-center">
             <CardTitle>Student Login</CardTitle>
             <CardDescription>
               Enter your code below, and date of birth.
@@ -49,13 +49,13 @@ export function LoginSwitcher({
             </div>
           </CardContent>
           <CardFooter>
-            <Button>Login</Button>
+            <Button className="w-full">Login</Button>
           </CardFooter>
         </Card>
       </TabsContent>
-      <TabsContent value="parent">
-        <Card>
-          <CardHeader>
+      <TabsContent className="w-full mt-0" value="parent">
+        <Card className="space-y-4">
+          <CardHeader className="text-center">
             <CardTitle>Parent Login</CardTitle>
             <CardDescription>
               Enter your email and password below.
@@ -72,10 +72,15 @@ export function LoginSwitcher({
             </div>
           </CardContent>
           <CardFooter>
-            <Button>Login</Button>
+            <Button className="w-full">Login</Button>
           </CardFooter>
         </Card>
       </TabsContent>
+
+      <TabsList className="bg-black mt-4">
+        <TabsTrigger value="student">Student</TabsTrigger>
+        <TabsTrigger value="parent">Parent</TabsTrigger>
+      </TabsList>
     </Tabs>
   );
 }
