@@ -13,13 +13,25 @@ import { Button } from "~/components/ui/button";
 import { NormalDatePicker } from "./OurDatePicker";
 import React from "react";
 import { cn } from "~/lib/utils";
+
+type LoginSwitcherProps = {
+  onStudentLogin?: (code: string, dob: Date) => void;
+  onParentLogin?: (email: string, password: string) => void;
+};
 import { addYears } from "date-fns";
 
 export function LoginSwitcher({
   className,
   ...props
-}: React.ComponentProps<typeof Tabs>) {
+}: React.ComponentProps<typeof Tabs> & LoginSwitcherProps) {
   const [dob, setDob] = React.useState<Date | undefined>(addYears(Date(), -12));
+  const codeRef = React.useRef<HTMLInputElement>(null);
+
+  const emailRef = React.useRef<HTMLInputElement>(null);
+  const passwordRef = React.useRef<HTMLInputElement>(null);
+
+  const fifteenyrsago = new Date();
+  fifteenyrsago.setFullYear(fifteenyrsago.getFullYear() - 15);
 
   return (
     <Tabs
@@ -38,19 +50,24 @@ export function LoginSwitcher({
           <CardContent className="space-y-4">
             <div className="space-y-1">
               <Label htmlFor="code">Code</Label>
-              <Input id="code" placeholder="AABBCC1122" />
+              <Input id="code" placeholder="AABBCC1122" ref={codeRef} />
             </div>
             <div className="space-y-1">
               <Label htmlFor="dob">Date of Birth</Label>
-              <NormalDatePicker
+              {/* <NormalDatePicker
                 className="flex w-full"
                 date={dob}
                 onDateChange={setDob}
-              />
+              /> */}
+              <Input type="date" id="dob" value="2010-01-01" ref={dobRef}/>
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Login</Button>
+            <Button className="w-full" onClick={() => {
+              if (codeRef.current?.value && dobRef.current?.value) {
+                props.onStudentLogin?.(codeRef.current.value, new Date(Date.parse(dobRef.current.value)));
+              }
+            }}>Login</Button>
           </CardFooter>
         </Card>
       </TabsContent>
@@ -65,15 +82,21 @@ export function LoginSwitcher({
           <CardContent className="space-y-4">
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" />
+              <Input id="email" type="email" ref={emailRef} />
             </div>
             <div className="space-y-1">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" />
+              <Input id="password" type="password" ref={passwordRef} />
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full">Login</Button>
+            <Button className="w-full" onClick={
+              () => {
+                if (emailRef.current?.value && passwordRef.current?.value) {
+                  props.onParentLogin?.(emailRef.current.value, passwordRef.current.value);
+                }
+              }
+            }>Login</Button>
           </CardFooter>
         </Card>
       </TabsContent>
