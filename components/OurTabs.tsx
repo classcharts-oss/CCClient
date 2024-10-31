@@ -18,20 +18,18 @@ type LoginSwitcherProps = {
   onStudentLogin?: (code: string, dob: Date) => void;
   onParentLogin?: (email: string, password: string) => void;
 };
-import { addYears } from "date-fns";
 
 export function LoginSwitcher({
   className,
+  onStudentLogin,
+  onParentLogin,
   ...props
 }: React.ComponentProps<typeof Tabs> & LoginSwitcherProps) {
-  const [dob, setDob] = React.useState<Date | undefined>(addYears(Date(), -12));
+  const [dob, setDob] = React.useState<string>("01-01-2010");
   const codeRef = React.useRef<HTMLInputElement>(null);
 
   const emailRef = React.useRef<HTMLInputElement>(null);
   const passwordRef = React.useRef<HTMLInputElement>(null);
-
-  const fifteenyrsago = new Date();
-  fifteenyrsago.setFullYear(fifteenyrsago.getFullYear() - 15);
 
   return (
     <Tabs
@@ -59,13 +57,13 @@ export function LoginSwitcher({
                 date={dob}
                 onDateChange={setDob}
               /> */}
-              <Input type="date" id="dob" value="2010-01-01" ref={dobRef}/>
+              <Input type="date" id="dob" value={dob} onChange={(e) => { setDob(e.target.value); }} />
             </div>
           </CardContent>
           <CardFooter>
             <Button className="w-full" onClick={() => {
-              if (codeRef.current?.value && dobRef.current?.value) {
-                props.onStudentLogin?.(codeRef.current.value, new Date(Date.parse(dobRef.current.value)));
+              if (codeRef.current?.value && dob) {
+                onStudentLogin?.(codeRef.current.value, new Date(dob));
               }
             }}>Login</Button>
           </CardFooter>
@@ -93,7 +91,7 @@ export function LoginSwitcher({
             <Button className="w-full" onClick={
               () => {
                 if (emailRef.current?.value && passwordRef.current?.value) {
-                  props.onParentLogin?.(emailRef.current.value, passwordRef.current.value);
+                  onParentLogin?.(emailRef.current.value, passwordRef.current.value);
                 }
               }
             }>Login</Button>

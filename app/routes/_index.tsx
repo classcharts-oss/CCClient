@@ -15,7 +15,7 @@ export default function Index() {
       <section className="max-w-sm w-full space-y-2">
         <LoginSwitcher className="w-full" onStudentLogin={
           (code, dob) => {
-            var res = useStudentLogin(code, dob);
+            var res = useStudentLogin(code, dob.toTimeString());
             alert(res.data?.meta.session_id);
           }
         }
