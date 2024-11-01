@@ -1,0 +1,16 @@
+{
+	"tasks": {
+		"dev": "deno run -A --watch main.ts"
+	},
+	"imports": {
+		"@std/assert": "jsr:@std/assert@1",
+		"@std/datetime": "jsr:@std/datetime@^0.225.2",
+		"connect-session-sequelize": "npm:connect-session-sequelize@^7.1.7",
+		"express": "npm:express@^4.21.1",
+		"path": "jsr:@std/path@1",
+		"pug": "npm:pug@^3.0.3",
+		"sequelize": "npm:sequelize@^6.37.5",
+		"sqlite3": "npm:sqlite3@^5.1.7"
+	},
+	"nodeModulesDir": "auto"
+}

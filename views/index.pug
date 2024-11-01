@@ -1,0 +1,20 @@
+extends templates/layout
+
+block content 
+	div(class="container-fluid")
+		div(class="position-absolute top-50 start-50 translate-middle")
+			form(action="/api/login", method="POST")
+				h1 Student Login
+				div(class="mb-3")
+					label(for="code" class="form-label") Access Code
+					input(type="text", class="form-control", id="code", name="code")
+				div(class="mb-3")
+					label(for="dob" class="form-label") Date of Birth
+					input(type="date", class="form-control", id="dob", name="dob", value="2010-01-01")
+				button(type="submit", class="btn btn-primary w-100") Login
+
+				div(class="text-center mt-3")
+					a(href="/student") Already logged in?
+
+block extras 
+	script(src="/js/login.js")

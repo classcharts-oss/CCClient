@@ -1,0 +1,26 @@
+doctype html
+html(lang="en" data-bs-theme="dark")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    title #{title}
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", rel="stylesheet")
+  body
+    if messages
+      if Object.keys(messages).length > 0
+        div(class="position-fixed bottom-0 start-0 p-3")
+          each type in Object.keys(messages)
+            each message in messages[type]
+              div(class="alert alert-" + type + " alert-dismissible fade show")
+                button(type="button", class="btn-close", data-bs-dismiss="alert", aria-label="Close")
+                = message
+
+    block content
+    
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js")
+    script(src="https://code.jquery.com/jquery-3.7.1.slim.min.js")
+
+    block extras 
